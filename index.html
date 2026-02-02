@@ -8,11 +8,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-    /* Full-page background image with overlay */
     body {
         margin: 0;
         min-height: 100vh;
-        background-image: url('love.jpg.jpeg'); /* match your uploaded image */
+        background-image: url('love.jpg.jpeg');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -25,7 +24,6 @@
         color: white;
     }
 
-    /* Overlay to darken background for text readability */
     body::before {
         content: "";
         position: absolute;
@@ -129,7 +127,6 @@
         to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Mobile adjustments */
     @media (max-width:600px){
         h1{font-size:2.5em;}
         p{font-size:1em;}
@@ -139,8 +136,8 @@
 
 <body>
 
-<!-- Audio -->
-<audio autoplay loop>
+<!-- Audio (will play on interaction) -->
+<audio id="audio" loop>
     <source src="love-song.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
 </audio>
@@ -179,19 +176,27 @@
     const card = document.getElementById("card");
     const message = document.getElementById("message");
     const hearts = document.getElementById("hearts");
+    const audio = document.getElementById("audio");
 
+    // Position No button initially
     noBtn.style.left = "150px";
     noBtn.style.top = "60px";
 
+    // Make No button move on hover
     noBtn.addEventListener("mouseover", () => {
         noBtn.style.left = Math.random() * 260 + "px";
         noBtn.style.top = Math.random() * 80 + "px";
         noBtn.style.transform = "scale(0.85)";
     });
 
+    // Yes button interaction
     yesBtn.addEventListener("click", () => {
+        // Show message and hearts
         card.style.display = "none";
         message.style.display = "block";
+
+        // Start the music after interaction
+        audio.play();
 
         for (let i = 0; i < 40; i++) {
             const heart = document.createElement("div");
@@ -206,5 +211,3 @@
 
 </body>
 </html>
-
-
